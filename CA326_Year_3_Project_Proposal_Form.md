@@ -1,10 +1,9 @@
-School of Computing
 # CA326 Year 3 Project Proposal Form
 <b>SECTION A</b>
 Project Title: Hopper  
-Student 1 Name: Maciej Swierad     ID Number: 18455726 
-Student 2 Name: Clíodhna Harrison     ID Number: 15440568
-Staff Member Consulted: Stephen Blott
+Student 1 Name: Maciej Swierad     ID Number: 18455726  
+Student 2 Name: Clíodhna Harrison     ID Number: 15440568  
+Staff Member Consulted: Stephen Blott  
 
 ## Project Description (1-2 pages):
 
