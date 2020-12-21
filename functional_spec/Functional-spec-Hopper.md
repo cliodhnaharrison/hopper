@@ -86,12 +86,15 @@ The necessary functions for Hopper are, but are not limited to, the following:
 The application will be hosted on a website and not all users will have access to all the features of the application. The permissions go as follows:  
 
 **Guest**
+
 These are unregistered or not signed in users, their permissions are limited to either registering an account or signing in to an account.  
 
 **Administrators**
+
 These are the maintainers of the website and application with elevated permissions. They have access to adding exercises, access to docker config, logs etc. and deleting other user accounts along with adding new distros.The administrators will also be responsible for the running of the website.  
 
 **Members**
+
 These users are registered with the website where the application instance is running, they have access to spin up containers in which they have root permissions.  
 
 ### 2.3 Operational Scenarios  
