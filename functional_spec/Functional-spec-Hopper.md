@@ -9,32 +9,32 @@
 
 
 ## Table of Contents  
-1. **Introduction**
-    1.1. Overview
-    1.2. Business Context
-    1.3. Glossary
-
-2. **General Description**
-    2.1.  Product / System Functions
-    2.2.  User Characteristics and Objectives
-    2.3.  Operational Scenarios
-    2.4.  Constraints
-
-3. **Functional Requirements**
-    3.1.  Login
-    3.2.  Register
-    3.3.  Create container
-    3.4.  Discard container
-    3.5.  Add exercise
-    3.6.  Test solution
-    3.7.  Set preferences
-    3.8.  Delete account
-4. **System Architecture**
-5. **High-Level Design**
-6. **Preliminary Schedule**
+1. **Introduction**  
+    1.1. Overview  
+    1.2. Business Context  
+    1.3. Glossary  
+  
+2. **General Description**  
+    2.1.  Product / System Functions  
+    2.2.  User Characteristics and Objectives  
+    2.3.  Operational Scenarios  
+    2.4.  Constraints  
+  
+3. **Functional Requirements**  
+    3.1.  Login  
+    3.2.  Register  
+    3.3.  Create container  
+    3.4.  Discard container  
+    3.5.  Add exercise  
+    3.6.  Test solution  
+    3.7.  Set preferences  
+    3.8.  Delete account  
+4. **System Architecture**  
+5. **High-Level Design**  
+6. **Preliminary Schedule**  
 7. **Appendices**  
 
-## 1. Introduction
+## 1. Introduction  
 
 ### 1.1 Overview  
 
@@ -129,142 +129,142 @@ Users can set their preference for what distribution they want their containers 
 Users can delete their accounts.
 
 ### 2.4 Constraints
-**Time Constraints**
+**Time Constraints**  
 In this project we are going to be using a lot of technologies unfamiliar to us so we will need to allow for some time to research within our alloted time for a task. Overall as we are under a time constraint we will have to manage our time well as we are limited to 8 weeks of development time. To manage our time well we are going to use Agile methodology and employ weekly sprints and regular standups.  
 
-**Code linting**
+**Code linting**  
 In order to stay in tune with best coding practices we will be using various different linters such as ShellCheck for bash scripts, GoLint for Go and Hadolint for Dockerfile.  
 
-**Accessibility**
+**Accessibility**  
 We are going to ensure that the website is readable by screen readers, and that the page can adjust to accommodate other visual impairments. We will be using a black and white colour scheme for the containers themselves.  
 
-## 3. Functional Requirements  
+## 3. Functional Requirements   
 
 
 ### 3.1 Login  
 
-**Description**
+**Description**  
 The user is going to login using OAuth  based on the account linked in the register function.  
 
-**Criticality**
+**Criticality**   
 This requirement is of high importance for the end product however it is not critical to the essential function of the application.  
 
-**Technical Issues**
+**Technical Issues**  
 We must ensure that user data is stored securely at all times. For this we need to make sure our database is secure from any database injection attacks.  
 
-**Inter-requirement Dependencies**
+**Inter-requirement Dependencies**  
 The function depends on the user having registered previously.  
 
 ### 3.2 Register  
 
-**Description**
+**Description** 
 For a user to log in, they must first register an account. They can do so by navigating to the registration form provided on the website. Where they will be prompted to register using a Google account.  
 
 
-**Criticality**
+**Criticality**  
 This requirement is of high importance for the end product however it is not critical to the essential function of the application.  
 
-**Technical Issues**
+**Technical Issues**  
 We must ensure that user data is stored securely at all times. For this we need to make sure our database is secure from any database injection attacks.  
 
-**Inter-requirement Dependencies**
+**Inter-requirement Dependencies**  
 None.  
 
 ### 3.3 Create container  
 
-**Description**
+**Description**  
 The system will create a container using whatever distro image the user has chosen in their preferences. Prior to implementing preferences the default will be an ubuntu image.  
 
-**Criticality**
+**Criticality**  
 This requirement is the most important part of the application. It is the minimum viable product and will be implemented first.  
 
-**Technical Issues**
+**Technical Issues**  
 We must ensure that user data is stored securely at all times. For this we need to make sure our database is secure from any database injection attacks.  
-
-**Inter-requirement Dependencies**
+ 
+**Inter-requirement Dependencies**  
 None.  
 
 ### 3.4 Discard container  
 
-**Description**
+**Description**  
 The user is able to discard their container at will, the system will send the users logs and history based on their preferences and proceed to destroy the container.  
 
 
-**Criticality**
+**Criticality**  
 This requirement is a critical part of the application. It is the minimum viable product and will be implemented first along with creating containers.  
 
-**Technical Issues**
+**Technical Issues**  
 We must ensure that user data is stored securely at all times. For this we need to make sure our database is secure from any database injection attacks.  
 
-**Inter-requirement Dependencies**
+**Inter-requirement Dependencies**  
 Create container must have been called previously and there must be a container currently running.  
 
 ### 3.5 Add Exercise  
 
-**Description**
+**Description**  
 The administrator is able to add exercises to the system for the users to complete.  
 
-**Criticality**
+**Criticality**  
 This requirement is of moderate importance, this allows administrators set exercises for users to complete and to be marked on.  
 
-**Technical Issues**
+**Technical Issues**  
 We must make sure that the user has no access to the marking scheme of the given exercise, we will do this by using Docker volumes.  
 
-**Inter-requirement Dependencies**
+**Inter-requirement Dependencies**  
 None.  
 
 ### 3.6 Test Solution  
 
-**Description**
+**Description**  
 The user is able to submit their solution to the given exercise to be tested and graded by the system based on marking scheme provided by administrator.  
 
-**Criticality**
+**Criticality**  
 This requirement is of moderate importance, this allows users to complete exercises.  
 
-**Technical Issues**
+**Technical Issues**  
 We must make sure that the user has no access to the marking scheme of the given exercise, we will do this by using Docker volumes.  
 
-**Inter-requirement Dependencies**
+**Inter-requirement Dependencies**  
 Create container must have been called previously and there must be a container currently running and an exercise must have been previously added.  
 
 ### 3.7 Set Preferences  
 
-**Description**
+**Description**  
 The user is able to set their preferences such as what is their distro of choice, whether they want their logs and history sent via email when they discard a container etc.  
 
-**Criticality**
+**Criticality**  
 This requirement is of moderate importance, it's important for the end experience but the system can function without it.  
 
-**Technical Issues**
+**Technical Issues**  
 We must ensure that the user's preferences are correctly linked to their account and stored securely.  
 
-**Inter-requirement Dependencies**
+**Inter-requirement Dependencies**  
 The user must have registered previously and be currently logged in.  
 
 ### 3.8 Delete Account  
 
-**Description**
+**Description**  
 The user is able to delete their account and remove any link between their Google account and the Hopper application.  
 
-**Criticality**
+**Criticality**  
 This requirement is of moderate importance, it's important for the end experience but not vital for usability.  
 
-**Technical Issues**
+**Technical Issues**  
 We must ensure that the user's information is securely and timely deleted to comply with GDPR and storage of information.  
 
-**Inter-requirement Dependencies**
+**Inter-requirement Dependencies**  
 Create container must have been called previously and there must be a container currently running.  
 
 ## 4. System Architecture  
-**Frontend**
+**Frontend**  
 The Frontend will be a website built using Javascript, HTML and CSS. It will be receiving information from the backend via HTTPS.
 It will be used to display the UI information received.
 When a user presses a button such as "Request Container" a call will be made to the backend API written in GO.  
 
-**Container**
+**Container**  
 The container will be running WeTTY to provide an interface for the user. WeTTY is a web terminal run with NodeJS. Reverse proxy will be in place to map the containers to endpoints.  
 
-**Backend**
+**Backend**  
 The backend will be a Linux box running the database, provisionally Redis, and running our Go code which will be handling the creation of containers via API. Traefik is a networking tool which we will be using to map container WeTTY ports to endpoints for users to hit.  
 
 ## 5. High Level Design  
