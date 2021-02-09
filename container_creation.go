@@ -18,14 +18,16 @@ func main() {
 		panic(err)
 	}
 
-	reader, err := cli.ImagePull(ctx, "centos", types.ImagePullOptions{})
+	commandArgs := os.Args[1:]
+
+	reader, err := cli.ImagePull(ctx, commandArgs[0], types.ImagePullOptions{})
 	if err != nil {
 		panic(err)
 	}
 	io.Copy(os.Stdout, reader)
 
 	resp, err := cli.ContainerCreate(ctx, &container.Config{
-		Image: "centos",
+		Image: commandArgs[0],
 		Cmd:   []string{"echo", "hello world"},
 		Tty:   false,
 	}, nil, nil, nil, "")
