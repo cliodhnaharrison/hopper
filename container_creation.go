@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"io"
 	"os"
 
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/client"
-	"github.com/docker/docker/pkg/stdcopy"
 )
 
 func main() {
@@ -18,16 +18,17 @@ func main() {
 		panic(err)
 	}
 
-	reader, err := cli.ImagePull(ctx, "centos", types.ImagePullOptions{})
+	imageName := os.Args[1:][0]
+
+	out, err := cli.ImagePull(ctx, imageName, types.ImagePullOptions{})
 	if err != nil {
 		panic(err)
 	}
-	io.Copy(os.Stdout, reader)
+	io.Copy(os.Stdout, out)
 
 	resp, err := cli.ContainerCreate(ctx, &container.Config{
-		Image: "centos",
-		Cmd:   []string{"echo", "hello world"},
-		Tty:   false,
+		Image: imageName,
+		Tty: true,
 	}, nil, nil, nil, "")
 	if err != nil {
 		panic(err)
@@ -37,19 +38,5 @@ func main() {
 		panic(err)
 	}
 
-	statusCh, errCh := cli.ContainerWait(ctx, resp.ID, container.WaitConditionNotRunning)
-	select {
-	case err := <-errCh:
-		if err != nil {
-			panic(err)
-		}
-	case <-statusCh:
-	}
-
-	out, err := cli.ContainerLogs(ctx, resp.ID, types.ContainerLogsOptions{ShowStdout: true})
-	if err != nil {
-		panic(err)
-	}
-
-	stdcopy.StdCopy(os.Stdout, os.Stderr, out)
+	fmt.Println(resp.ID)
 }
