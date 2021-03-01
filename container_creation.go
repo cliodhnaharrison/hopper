@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+	"net/http"
 	"io"
 	"os"
 
@@ -11,14 +13,23 @@ import (
 	"github.com/docker/docker/client"
 )
 
+func PostHandler(w http.ResponseWriter, r *http.Request) {
+	imageName := r.URL.Query()["image"][0]
+	CreateContainer(imageName)
+}
+
 func main() {
+	http.HandleFunc("/create", PostHandler)
+	log.Fatal(http.ListenAndServe(":8080", nil))
+}
+
+
+func CreateContainer(imageName string) {
 	ctx := context.Background()
 	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
 	if err != nil {
 		panic(err)
 	}
-
-	imageName := os.Args[1:][0]
 
 	out, err := cli.ImagePull(ctx, imageName, types.ImagePullOptions{})
 	if err != nil {

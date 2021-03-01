@@ -17,7 +17,7 @@ func main() {
 
 	commandArgs := os.Args[1:]
 
-	fmt.Print("Stopping container ", commandArgs[0], "... ")
+	fmt.Println("Stopping container ", commandArgs[0], "... ")
 	if err := cli.ContainerStop(ctx, commandArgs[0], nil); err != nil {
 		panic(err)
 	}
