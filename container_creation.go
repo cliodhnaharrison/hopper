@@ -1,4 +1,4 @@
-package main
+package CreateContainer
 
 import (
 	"context"
@@ -12,17 +12,6 @@ import (
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/client"
 )
-
-func PostHandler(w http.ResponseWriter, r *http.Request) {
-	imageName := r.URL.Query()["image"][0]
-	CreateContainer(imageName)
-}
-
-func main() {
-	http.HandleFunc("/create", PostHandler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
-}
-
 
 func CreateContainer(imageName string) {
 	ctx := context.Background()
