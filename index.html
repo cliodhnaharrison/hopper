@@ -28,7 +28,14 @@
         <div class="container bg-secondary mt-3" style="height: 360px;">
             <h1 style="color: azure;">Need a container?</h1>
             <img src="img/terminal.gif" class="img-fluid" alt="Terminal gif" style="padding-left: 15em;">
-            <button type="button" class="btn btn-info float-right">Hop to a container</button>
+        <form action="create" method="GET" enctype="text/plain" name="image">
+            <select class="form-control" name="image">
+                <option value="ubuntu">Ubuntu</option>
+                <option value="openSuse">OpenSuse</option>
+                <option value="centOs">centOs</option>
+            </select>
+            <button type="submit" class="btn btn-info float-right">Hop to a container</button>
+	</form>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
