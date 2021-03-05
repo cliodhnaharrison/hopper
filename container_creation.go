@@ -1,12 +1,8 @@
-package CreateContainer
+package main
 
 import (
 	"context"
 	"fmt"
-	"log"
-	"net/http"
-	"io"
-	"os"
 
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
@@ -19,12 +15,6 @@ func CreateContainer(imageName string) {
 	if err != nil {
 		panic(err)
 	}
-
-	out, err := cli.ImagePull(ctx, imageName, types.ImagePullOptions{})
-	if err != nil {
-		panic(err)
-	}
-	io.Copy(os.Stdout, out)
 
 	resp, err := cli.ContainerCreate(ctx, &container.Config{
 		Image: imageName,

@@ -5,15 +5,20 @@ import (
   "net/http"
 )
 
-func PostHandler(w http.ResponseWriter, r *http.Request) {
+func ContainerRequestHandler(w http.ResponseWriter, r *http.Request) {
 	imageName := r.URL.Query()["image"][0]
   fmt.Println(imageName)
-	//CreateContainer(imageName)
+  switch {
+  case imageName == "ubuntu":
+      CreateContainer("ubuntu-wetty")
+  default:
+      fmt.Println("Image not found")
+  }
 }
 
 
 func main() {
-  http.HandleFunc("/create", PostHandler)
+  http.HandleFunc("/create", ContainerRequestHandler)
   http.Handle("/", http.FileServer(http.Dir("./static")))
   http.ListenAndServe(":3000", nil)
 }
