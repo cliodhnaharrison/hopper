@@ -6,6 +6,7 @@ import (
 
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
+	"github.com/docker/docker/api/types/network"
 	"github.com/docker/docker/client"
 )
 
@@ -17,9 +18,18 @@ func CreateContainer(imageName string) {
 	}
 
 	resp, err := cli.ContainerCreate(ctx, &container.Config{
+		Hostname: "abc123",
 		Image: imageName,
+		Labels: map[string]string {
+						"traefik.enable": "true",
+						"traefik.http.routers.abc123.rule": "PathPrefix(\"/abc123\")",
+						"traefik.http.routers.abc123.entrypoints": "web",
+						"traefik.http.services.abc123.loadbalancer.server.port": "3000",
+						"traefik.http.services.abc123.loadbalancer.passHostHeader": "true"},
 		Tty: true,
-	}, nil, nil, nil, "")
+	}, nil, &network.NetworkingConfig{map[string] *network.EndpointSettings {
+				"docker_traefik_proxy": &network.EndpointSettings{NetworkID: "docker_traefik_proxy"},
+		}}, nil, "abc123")
 	if err != nil {
 		panic(err)
 	}

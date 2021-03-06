@@ -16,7 +16,6 @@ func ContainerRequestHandler(w http.ResponseWriter, r *http.Request) {
   }
 }
 
-
 func main() {
   http.HandleFunc("/create", ContainerRequestHandler)
   http.Handle("/", http.FileServer(http.Dir("./static")))
