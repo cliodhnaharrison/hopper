@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google-signin-client_id" content="934568282160-5lqsio2dbkukvepu6k8a5h19kea1cpa5.apps.googleusercontent.com">
         <title>Hopper</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="icon" href="img/hopper.png" type="img/png">
@@ -16,7 +17,9 @@
             <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a class="nav-link text-light" href="about.html">About</a></li>
             <li class="nav-item"><a class="nav-link text-light" href="exercises.html">Exercises</a></li>
-            <li class="nav-item"><a class="nav-link text-light" href="sign-in.html">Sign-in</a></li>
+	    <li class="nav-item">
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </li>
             </ul>
             <a class="navbar-brand">
                 <img src="img/hopper.png" alt="hopper-logo" width="150" height="100">
@@ -29,15 +32,18 @@
         <div class="container bg-secondary mt-3" style="height: 470px;">
             <h1 style="color: azure;">Need a container?</h1>
             <img src="img/terminal.gif" class="img-fluid" alt="Terminal gif" style="padding-left: 15em;">
-        <form action="create" method="GET" enctype="text/plain" name="image">
+        <form action="create" method="GET" enctype=text/plain name="images">
             <select class="form-control float-right" name="image" style="margin-top: 1em; width: 10em;">
                 <option value="ubuntu">Ubuntu</option>
                 <option value="openSuse">OpenSuse</option>
                 <option value="centOs">centOs</option>
             </select>
+	    <input type="text" id="user" name="user">
             <button type="submit" class="btn btn-info float-right" style="margin-top: 1em;">Hop to a container</button>
 	</form>
         </div>
+	<script src="scripts.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
