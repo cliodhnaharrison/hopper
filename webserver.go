@@ -7,17 +7,20 @@ import (
 
 func ContainerRequestHandler(w http.ResponseWriter, r *http.Request) {
 	imageName := r.URL.Query()["image"][0]
-  username := r.URL.Query()["username"][0]
-  cookie, err := r.Cookie("username")
+  //username := r.URL.Query()["username"][0]
+  cookies := r.Cookies()
+  fmt.Println(cookies)
+  username, err := r.Cookie("username")
   if err != nil {
       fmt.Printf("Cant find cookie :/\r\n")
       return
   }
-  fmt.Println(cookie)
+  fmt.Println(username)
   switch {
   case imageName == "ubuntu":
-      CreateContainer("ubuntu-wetty", username)
-      http.Redirect(w, r, "/"+ username, http.StatusSeeOther)
+      fmt.Println(username)
+      //CreateContainer("ubuntu-wetty", username)
+      //http.Redirect(w, r, "/"+ username, http.StatusSeeOther)
   default:
       fmt.Println("Image not found")
   }
