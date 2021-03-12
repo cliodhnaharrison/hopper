@@ -8,6 +8,12 @@ import (
 func ContainerRequestHandler(w http.ResponseWriter, r *http.Request) {
 	imageName := r.URL.Query()["image"][0]
   username := r.URL.Query()["username"][0]
+  cookie, err := r.Cookie("username")
+  if err != nil {
+      fmt.Printf("Cant find cookie :/\r\n")
+      return
+  }
+  fmt.Println(cookie)
   switch {
   case imageName == "ubuntu":
       CreateContainer("ubuntu-wetty", username)
