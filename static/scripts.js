@@ -14,3 +14,11 @@ function signOut() {
 		console.log('Signed out user.');
 	});
 }
+
+function discard() {
+	$.ajax({
+		url: "/destroy"
+	}).done(function() {
+		console.log("container destroyed");
+	});
+}

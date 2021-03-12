@@ -3,7 +3,6 @@ package main
 import (
   "fmt"
   "net/http"
-  "strings"
 )
 
 func ContainerRequestHandler(w http.ResponseWriter, r *http.Request) {
@@ -16,27 +15,27 @@ func ContainerRequestHandler(w http.ResponseWriter, r *http.Request) {
   }
   switch {
   case imageName == "ubuntu":
-      username := strings.Split(userCookie, "=")[1]
+      username := userCookie.Value
       CreateContainer("ubuntu-wetty", username)
   default:
       fmt.Println("Image not found")
   }
 }
 
-func ContainerDestructionhandler(w http.ResponseWriter, r *http.Request) {
+func ContainerDestructionHandler(w http.ResponseWriter, r *http.Request) {
   userCookie, err := r.Cookie("username")
   if err != nil {
       fmt.Println("Cant find cookie")
       return
       // Some kind of handling pls
   }
-  username := strings.Split(userCookie, "=")[1]
+  username := userCookie.Value
   KillContainer(username)
 }
 
 func main() {
   http.HandleFunc("/create", ContainerRequestHandler)
-  http.HandleFunc("/destroy", ContainerDestructionhandler)
+  http.HandleFunc("/destroy", ContainerDestructionHandler)
   http.Handle("/", http.FileServer(http.Dir("./static")))
   http.ListenAndServe(":3000", nil)
 }
