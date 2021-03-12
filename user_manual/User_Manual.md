@@ -26,15 +26,15 @@ Press "Hop to a container", a container will be created for you on the backend.
 ---------
 
 Now visit http://cliodhnaharrison.ie/username where the username is your first name  and your last name all lower case, taken from your gmail address.  
-![WeTTY Screen](https://i.imgur.com/8dOZbua.png)
+![WeTTY Screen](https://i.imgur.com/J3hcN50.png)
 
 ---------
-![instruction box](https://i.imgur.com/G2W9bhX.png)
+![instruction box](https://i.imgur.com/cFThX7A.png)
 Following the instructions above:  
 
-When prompted to login, enter your name as the login in this case "Maciej" and the name as the password. Once in the container, you have full access to it, including root.  
+When prompted to login, enter your name as the login in this case "maciejswierad" and the name as the password. Once in the container, you have full access to it, including root.  
 To switch to root type ```su root``` password ```root```.
-![Wetty logged in screen](https://i.imgur.com/8Uy1XXa.png)  
+![Wetty logged in screen](https://i.imgur.com/lIm7sF2.png)  
 
 ---------
 And finally, once you wish to discard your container, head on back over to http://cliodhnaharrison.ie:3000 and press the "Discard container" button.
