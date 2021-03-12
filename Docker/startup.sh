@@ -1,5 +1,5 @@
 #!/bin/bash
 
 useradd -m $USERNAME
-echo "$USERNAME:pass123" | chpasswd
+echo "$USERNAME:$USERNAME" | chpasswd
 wetty --base=/"$USERNAME"
