@@ -22,3 +22,14 @@ function discard() {
 		console.log("Container discarded");
 	});
 }
+
+function create() {
+	var image = document.getElementById("image").value;
+	$.ajax({
+		url: "/create",
+		data: {"image": image},
+		success: function(response) {
+			console.log("success");
+		},
+	});
+}
