@@ -4,7 +4,7 @@ CA326 Third Year Project - Hopper
 
 Cliodhna Harrison & Maciej Swierad
 
-[Video Walkthrough](cliodhnaharrison.ie/walkthrough)
+[Video Walkthrough](walkthrough.cliodhnaharrison.ie)
 
 
 [Blog](https://hopper-blog.netlify.app/)
