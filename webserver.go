@@ -7,10 +7,11 @@ import (
 
 func ContainerRequestHandler(w http.ResponseWriter, r *http.Request) {
 	imageName := r.URL.Query()["image"][0]
-  fmt.Println(imageName)
+  username := r.URL.Query()["username"][0]
   switch {
   case imageName == "ubuntu":
-      CreateContainer("ubuntu-wetty")
+      CreateContainer("ubuntu-wetty", username)
+      http.Redirect(w, r, "/"+ username, http.StatusSeeOther)
   default:
       fmt.Println("Image not found")
   }

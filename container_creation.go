@@ -10,26 +10,29 @@ import (
 	"github.com/docker/docker/client"
 )
 
-func CreateContainer(imageName string) {
+func CreateContainer(imageName string, username string) {
 	ctx := context.Background()
 	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
 	if err != nil {
 		panic(err)
 	}
 
+	envUsername := "USERNAME=" + username
+
 	resp, err := cli.ContainerCreate(ctx, &container.Config{
-		Hostname: "abc123",
+		Env: []string {envUsername},
+		Hostname: username,
 		Image: imageName,
 		Labels: map[string]string {
 						"traefik.enable": "true",
-						"traefik.http.routers.abc123.rule": "PathPrefix(\"/abc123\")",
-						"traefik.http.routers.abc123.entrypoints": "web",
-						"traefik.http.services.abc123.loadbalancer.server.port": "3000",
-						"traefik.http.services.abc123.loadbalancer.passHostHeader": "true"},
+						"traefik.http.routers."+ username + ".rule": "PathPrefix(\"/"+ username + "\")",
+						"traefik.http.routers."+ username + ".entrypoints": "web",
+						"traefik.http.services."+ username + ".loadbalancer.server.port": "3000",
+						"traefik.http.services."+ username + ".loadbalancer.passHostHeader": "true"},
 		Tty: true,
 	}, nil, &network.NetworkingConfig{map[string] *network.EndpointSettings {
 				"docker_traefik_proxy": &network.EndpointSettings{NetworkID: "docker_traefik_proxy"},
-		}}, nil, "abc123")
+		}}, nil, username)
 	if err != nil {
 		panic(err)
 	}
