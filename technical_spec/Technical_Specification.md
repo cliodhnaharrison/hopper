@@ -85,7 +85,7 @@ The docker engine is responsible for building our containers and serving them th
 Each container runs an image of the operating system chosen (Currently due to limitations this is only Ubuntu) and runs WeTTY inside of the container and serves it back to the user.  
 ## 3 High Level Design  
 ### Sequence Diagram  
-![Sequence diagram](https://i.imgur.com/glgRCGu.png)  
+![Sequence diagram](https://i.imgur.com/N82uvVi.png)  
 The above sequence diagram demonstrates the use case of a signed in user requesting a container.  
 - The user would using the frontend request a container  
 - This would pass information such as what distro was chosen and the user's username to the Go backend which would in turn call the container creation function.  
