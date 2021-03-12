@@ -27,7 +27,7 @@
 
 
 ## 1. Introduction  
-This technical specification document is an updated description of the Hopper application, where the high-level design and architecture is outlined along with how to deploy the application yourself and any problems encountered during development plus our plans for the future.  
+This technical specification document is an updated description of the Hopper application, where the high-level design and architecture is outlined along with how to deploy the application yourself and any problems encountered during the development plus our plans for the future.  
 
 ### 1.1 Overview  
 Hopper is a way to easily request containers of your chosen linux distribution in a website.  And just as easily discard them without consequence to the server or system at large. This is aimed at users such as students needing a linux environment, or at developers looking to test their applications on different distributions of Linux seamlessly or simply anyone looking for a linux working environment on the go.  
@@ -95,9 +95,13 @@ The above sequence diagram demonstrates the use case of a signed in user request
 ## 4 Problems and Resolution  
 ### Traefik and Docker network  
 #### Problem  
-When the traefik and linux containers were created, traefik could not detect our linux container.  
+When the traefik and linux containers were created, traefik could not detect our linux container correctly even when connected to the same network.  
 #### Solution  
-After reading into Traefik documentation and Docker documentation we found that sometimes containers won't automatically be on the same network, we fixed this by manually putting traefik and our linux containers on the same network in their config files.  
+After reading into the Docker SDK documentation and using `docker inspect` to investigate the properties of the created containers we found that if the network isn't specified when creating the container they will connect to a default docker bridge network and even if the containers are connected to the correct traefik network they will use the default first. 
+
+While debugging this the default network experienced an issue which caused the containers to use their backup network, the traefik network so the containers WeTTY interface was reachable in the browser. This hugely helped in debugging the issue.
+
+The solution was to this was to specify the network in a networking config passed to the create function rather than connecting the container to the network after creation.
 
 In the traefik config:  
 ```
@@ -182,12 +186,6 @@ Now back in the ```src``` directory run ```make build-image``` to create the doc
 And finally to start your website run ``` go run webserver.go container_creation.go``` 
 
 Now your website should be up and functional.
-
-
-
-
-
-
 
 
 
