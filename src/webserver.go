@@ -11,12 +11,14 @@ func ContainerRequestHandler(w http.ResponseWriter, r *http.Request) {
   if err != nil {
       fmt.Println("Cant find cookie")
       return
-      // Some kind of handling pls
   }
   switch {
   case imageName == "ubuntu":
       username := userCookie.Value
       CreateContainer("ubuntu-wetty", username)
+  case imageName == "centos":
+      username := userCookie.Value
+      CreateContainer("centos-wetty", username)
   default:
       fmt.Println("Image not found")
   }
@@ -27,7 +29,6 @@ func ContainerDiscardHandler(w http.ResponseWriter, r *http.Request) {
   if err != nil {
       fmt.Println("Cant find cookie")
       return
-      // Some kind of handling pls
   }
   username := userCookie.Value
   KillContainer(username)

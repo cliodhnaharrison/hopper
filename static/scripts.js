@@ -4,8 +4,8 @@ function onSignIn(googleUser) {
 	console.log('Name: ' + profile.getName());
 	var name = profile.getName();
 	var splitname = name.split(" ");
-	var uname = splitname[0];
-	document.cookie = "username=" + uname + ";";
+	var uname = splitname[0] + splitname[1];
+	document.cookie = "username=" + uname.toLowerCase() + ";";
 }
 
 function signOut() {
