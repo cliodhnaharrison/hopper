@@ -21,12 +21,11 @@ Choose your linux distro
 ![distro selector](https://i.imgur.com/BDKSuXV.png)
 
 ---------
-Press "Hop to a container", You will now be taken to a blank webpage with the URL params of whatever distro you have chosen.
-![image alt](https://i.imgur.com/X6ZFp2I.png)
+Press "Hop to a container", a container will be created for you on the backend.
 
 ---------
 
-Now visit http://cliodhnaharrison.ie/username where the username is your first name taken from your gmail address.  
+Now visit http://cliodhnaharrison.ie/username where the username is your first name  and your last name all lower case, taken from your gmail address.  
 ![WeTTY Screen](https://i.imgur.com/8dOZbua.png)
 
 ---------
