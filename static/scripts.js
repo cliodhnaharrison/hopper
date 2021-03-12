@@ -11,14 +11,14 @@ function onSignIn(googleUser) {
 function signOut() {
 	var session = gapi.auth2.getAuthInstance();
 	session.signOut().then(function () {
-		console.log('Signed out user.');
+		console.log('Signed out user');
 	});
 }
 
 function discard() {
 	$.ajax({
-		url: "/destroy"
+		url: "/discard"
 	}).done(function() {
-		console.log("container destroyed");
+		console.log("Container discarded");
 	});
 }

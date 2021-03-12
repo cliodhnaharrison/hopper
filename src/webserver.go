@@ -22,7 +22,7 @@ func ContainerRequestHandler(w http.ResponseWriter, r *http.Request) {
   }
 }
 
-func ContainerDestructionHandler(w http.ResponseWriter, r *http.Request) {
+func ContainerDiscardHandler(w http.ResponseWriter, r *http.Request) {
   userCookie, err := r.Cookie("username")
   if err != nil {
       fmt.Println("Cant find cookie")
@@ -35,7 +35,7 @@ func ContainerDestructionHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
   http.HandleFunc("/create", ContainerRequestHandler)
-  http.HandleFunc("/destroy", ContainerDestructionHandler)
+  http.HandleFunc("/discard", ContainerDiscardHandler)
   http.Handle("/", http.FileServer(http.Dir("./static")))
   http.ListenAndServe(":3000", nil)
 }
