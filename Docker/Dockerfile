@@ -9,8 +9,8 @@ RUN npm install --global yarn
 
 RUN yarn global add wetty
 RUN echo "root:root" | chpasswd
-RUN useradd -r wettyhost
-RUN echo "wettyhost:pass123" | chpasswd
-RUN su wettyhost
+COPY --chown=root:root ./startup.sh /opt/
+RUN chmod +x /opt/startup.sh
+RUN yes | unminimize
 
-CMD wetty --base=/abc123
+ENTRYPOINT ["/opt/startup.sh"]
