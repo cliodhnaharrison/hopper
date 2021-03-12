@@ -8,17 +8,15 @@ import (
 	"github.com/docker/docker/client"
 )
 
-func main() {
+func KillContainer(username string) {
 	ctx := context.Background()
 	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
 	if err != nil {
 		panic(err)
 	}
 
-	commandArgs := os.Args[1:]
-
-	fmt.Println("Stopping container ", commandArgs[0], "... ")
-	if err := cli.ContainerStop(ctx, commandArgs[0], nil); err != nil {
+	fmt.Println("Stopping container ", username, "... ")
+	if err := cli.ContainerStop(ctx, username, nil); err != nil {
 		panic(err)
 	}
 }

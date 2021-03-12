@@ -5,6 +5,6 @@ clean: src/kill_all_containers.go
 build-image: Docker/Dockerfile
 	docker build -t ubuntu-wetty Docker/
 
-start-server: Docker/docker-compose.yml src/webserver.go src/container_creation.go
+start-server: Docker/docker-compose.yml src/webserver.go src/container_creation.go src/kill_one_container.go
 	docker-compose -f Docker/docker-compose.yml up -d
-	go run src/webserver.go src/container_creation.go
+	go run src/webserver.go src/container_creation.go src/kill_one_container.go
