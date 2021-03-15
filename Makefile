@@ -5,8 +5,11 @@ clean: src/kill_all_containers.go
 build-image: Docker/Ubuntu/Dockerfile Docker/Centos/Dockerfile
 	docker build -t ubuntu-wetty Docker/Ubuntu
 	docker build -t centos-wetty Docker/Centos
-	
+
 
 start-server: Docker/docker-compose.yml src/webserver.go src/container_creation.go src/kill_one_container.go
 	docker-compose -f Docker/docker-compose.yml up -d
 	go run src/webserver.go src/container_creation.go src/kill_one_container.go
+
+test: tests/container_creation.go tests/testing.sh
+	tests/testing.sh
